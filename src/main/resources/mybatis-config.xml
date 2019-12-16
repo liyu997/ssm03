@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <setting name="logImpl" value="LOG4J"/>
+    </settings>
+    <typeAliases>
+        <!-- 对包下面所有类自动设置别名,别名就是类名(首字母大小写都可以) -->
+        <package name="com.yShen.bus.model" />
+        <package name="com.yShen.sys.model" />
+        <package name="com.yShen.sys.vo" />
+        <package name="com.yShen.bus.vo" />
+    </typeAliases>
+    <!--<setting name="logImpl" value="LOG4J"/>-->
+    <!-- 映射文件 -->
+    <mappers>
+        <mapper resource="mapper/sys/User.xml" />
+        <mapper resource="mapper/sys/Menu.xml" />
+        <mapper resource="mapper/sys/Role.xml" />
+
+
+    </mappers>
+</configuration>
