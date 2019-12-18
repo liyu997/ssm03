@@ -19,6 +19,7 @@
         <mapper resource="mapper/sys/User.xml" />
         <mapper resource="mapper/sys/Menu.xml" />
         <mapper resource="mapper/sys/Role.xml" />
+        <mapper resource="mapper/sys/LogInfo.xml" />
 
 
     </mappers>

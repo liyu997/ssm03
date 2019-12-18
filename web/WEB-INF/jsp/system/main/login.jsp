@@ -11,7 +11,7 @@
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="format-detection" content="telephone=no">
-	<link rel="icon" href="<%=request.getContextPath()%>/resources/favicon.ico">
+	<%--<link rel="icon" href="favicon.ico">--%>
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/layui/css/layui.css" media="all" />
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/public.css" media="all" />
 </head>

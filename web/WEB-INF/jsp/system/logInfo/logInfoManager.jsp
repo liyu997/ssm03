@@ -12,9 +12,10 @@
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="format-detection" content="telephone=no">
-	<link rel="icon" href="favicon.ico">
-	<link rel="stylesheet" href="${ctx }/resources/layui/css/layui.css" media="all" />
-	<link rel="stylesheet" href="${ctx }/resources/css/public.css" media="all" />
+	<%--<link rel="icon" href="favicon.ico">--%>
+	<link rel="icon" href="//www.jd.com/favicon.ico" mce_href="//www.jd.com/favicon.ico" type="image/x-icon" />
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/layui/css/layui.css" media="all" />
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/public.css" media="all" />
 </head>
 <body class="childrenBody">
 	<!-- 搜索条件开始 -->
@@ -67,7 +68,7 @@
 	<!-- 数据表格结束 -->
 	
 	
-	<script src="${ctx }/resources/layui/layui.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/layui/layui.js"></script>
 	<script type="text/javascript">
 	    var tableIns;
 	    layui.use([ 'jquery', 'layer', 'form', 'table','laydate'  ], function() {
@@ -89,7 +90,7 @@
 			//渲染数据表格
 			 tableIns=table.render({
 				 elem: '#logInfoTable'   //渲染的目标对象
-			    ,url:'${ctx}/logInfo/loadAllLogInfo.action' //数据接口
+			    ,url:'/SSM/logInfo/loadAllLogInfo' //数据接口
 			    ,title: '用户数据表'//数据导出来的标题
 			    ,toolbar:"#logInfoToolBar"   //表格的工具条
 			    ,height:'full-150'
@@ -108,7 +109,7 @@
 			$("#doSearch").click(function(){
 				var params=$("#searchFrm").serialize();
 				tableIns.reload({
-					url:"${ctx}/logInfo/loadAllLogInfo.action?"+params,
+					url:"/SSM/logInfo/loadAllLogInfo?"+params,
 					page:{curr:1}
 							
 				})
@@ -129,7 +130,7 @@
 			  if(layEvent === 'del'){ //删除
 				  layer.confirm('真的删除【'+data.loginname+'】这个日志吗', function(index){
 				       //向服务端发送删除指令
-				       $.post("${ctx}/logInfo/deleteLogInfo.action",{id:data.id},function(res){
+				       $.post("/SSM/logInfo/deleteLogInfo",{id:data.id},function(res){
 				    	   layer.msg(res.msg);
 				    	    //刷新数据 表格
 							tableIns.reload();
@@ -152,7 +153,7 @@
 			    });
 			    layer.confirm('真的删除选中的这些日志吗', function(index){
 				       //向服务端发送删除指令
-				       $.post("${ctx}/logInfo/deleteBatchLogInfo.action",params,function(res){
+				       $.post("/SSM/logInfo/deleteBatchLogInfo",params,function(res){
 				    	   layer.msg(res.msg);
 				    	    //刷新数据 表格
 							tableIns.reload();
