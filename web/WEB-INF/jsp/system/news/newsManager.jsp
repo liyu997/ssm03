@@ -13,10 +13,10 @@
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="format-detection" content="telephone=no">
 	<link rel="icon" href="favicon.ico">
-	<link rel="stylesheet" href="${ctx }/resources/layui/css/layui.css" media="all" />
-	<link rel="stylesheet" href="${ctx }/resources/css/public.css" media="all" />
-	<link rel="stylesheet" href="${ctx }/resources/layui_ext/dtree/dtree.css">
-	<link rel="stylesheet" href="${ctx }/resources/layui_ext/dtree/font/dtreefont.css">
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/layui/css/layui.css" media="all" />
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/public.css" media="all" />
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/layui_ext/dtree/dtree.css">
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/layui_ext/dtree/font/dtreefont.css">
 </head>
 <body class="childrenBody">
 	<!-- 搜索条件开始 -->
@@ -112,7 +112,7 @@
 		<div id="view_content"></div>
 	</div>
 	
-	<script src="${ctx }/resources/layui/layui.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/layui/layui.js"></script>
 	<script type="text/javascript">
 	    var tableIns;
 	    layui.use([ 'jquery', 'layer', 'form', 'table','laydate','layedit' ], function() {
@@ -138,7 +138,7 @@
 			//渲染数据表格
 			 tableIns=table.render({
 				 elem: '#newsTable'   //渲染的目标对象
-			    ,url:'${ctx}/news/loadAllNews.action' //数据接口
+			    ,url:'/SSM/news/loadAllNews' //数据接口
 			    ,title: '用户数据表'//数据导出来的标题
 			    ,toolbar:"#newsToolBar"   //表格的工具条
 			    ,height:'full-200'
@@ -158,7 +158,7 @@
 			$("#doSearch").click(function(){
 				var params=$("#searchFrm").serialize();
 				tableIns.reload({
-					url:"${ctx}/news/loadAllNews.action?"+params,
+					url:"/SSM/news/loadAllNews?"+params,
 					page:{curr:1}
 				})
 			});
@@ -181,7 +181,7 @@
 			  if(layEvent === 'del'){ //删除
 				  layer.confirm('真的删除【'+data.title+'】这个公告吗', function(index){
 				       //向服务端发送删除指令
-				       $.post("${ctx}/news/deleteNews.action",{id:data.id},function(res){
+				       $.post("/SSM/news/deleteNews",{id:data.id},function(res){
 				    	   layer.msg(res.msg);
 				    	    //刷新数据 表格
 							tableIns.reload();
@@ -207,7 +207,7 @@
 						editIndex=layedit.build('content'); //建立编辑器
 						//清空表单数据       
 						$("#dataFrm")[0].reset();
-						url="${ctx}/news/addNews.action";
+						url="/SSM/news/addNews";
 					}
 				});
 			}
@@ -225,7 +225,7 @@
 					success:function(index){
 						editIndex=layedit.build('content'); //建立编辑器
 						form.val("dataFrm",data);
-						url="${ctx}/news/updateNews.action";
+						url="/SSM/news/updateNews";
 					}
 				});
 			}
@@ -274,7 +274,7 @@
 			    });
 			    layer.confirm('真的删除选中的这些公告吗', function(index){
 				       //向服务端发送删除指令
-				       $.post("${ctx}/news/deleteBatchNews.action",params,function(res){
+				       $.post("/SSM/news/deleteBatchNews",params,function(res){
 				    	   layer.msg(res.msg);
 				    	    //刷新数据 表格
 							tableIns.reload();
