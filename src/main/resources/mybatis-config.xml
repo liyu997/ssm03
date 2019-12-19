@@ -23,6 +23,12 @@
         <mapper resource="mapper/sys/News.xml" />
 
 
+        <mapper resource="mapper/bus/CarMapper.xml" />
+        <!--<mapper resource="mapper/bus/CheckMapper.xml" />-->
+        <mapper resource="mapper/bus/CustomerMapper.xml" />
+        <!--<mapper resource="mapper/bus/RentMapper.xml" />-->
+
+
 
 
     </mappers>
