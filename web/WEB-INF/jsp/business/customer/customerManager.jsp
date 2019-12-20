@@ -168,16 +168,16 @@
 			    ,page: true  //是否启用分页
 			    ,cols: [[   //列表数据
 			     {type: 'checkbox', fixed: 'left'}
-			      ,{field:'identity', title:'身份证号',align:'center',width:'180'}
-			      ,{field:'custname', title:'客户姓名',align:'center',width:'100'}
-			      ,{field:'phone', title:'客户电话',align:'center',width:'120'}
-			      ,{field:'address', title:'客户地址',align:'center',width:'150'}
-			      ,{field:'career', title:'客户职位',align:'center',width:'120'}
-			      ,{field:'sex', title:'性别',align:'center',width:'80',templet:function(d){
+			      ,{field:'identity', title:'身份证号',align:'center'}
+			      ,{field:'custname', title:'客户姓名',align:'center'}
+			      ,{field:'phone', title:'客户电话',align:'center'}
+			      ,{field:'address', title:'客户地址',align:'center'}
+			      ,{field:'career', title:'客户职位',align:'center'}
+			      ,{field:'sex', title:'性别',align:'center',templet:function(d){
 			    	  return d.sex=='1'?'<font color=blue>男</font>':'<font color=red>女</font>';
 			      }}
-			      ,{field:'createtime', title:'录入时间',align:'center',width:'180'}
-			      ,{fixed: 'right', title:'操作', toolbar: '#customerBar', width:180,align:'center'}
+			      ,{field:'createtime', title:'录入时间',align:'center'}
+			      ,{fixed: 'right', title:'操作', toolbar: '#customerBar',align:'center'}
 			    ]],
 			    done:function(data,curr,count){
 			    	//不是第一页时如果当前返回的的数据为0那么就返回上一页

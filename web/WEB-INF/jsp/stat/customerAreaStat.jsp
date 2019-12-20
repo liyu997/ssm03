@@ -7,10 +7,10 @@
 </head>
 <body style="height: 100%; margin: 0">
        <div id="container" style="height: 100%"></div>
-       <script type="text/javascript" src="${ctx }/resources/echarts/js/echarts.min.js"></script>
-       <script type="text/javascript" src="${ctx }/resources/echarts/js/jquery-3.1.1.min.js"></script>
+       <script type="text/javascript" src="<%=request.getContextPath()%>/resources/echarts/js/echarts.min.js"></script>
+       <script type="text/javascript" src="<%=request.getContextPath()%>/resources/echarts/js/jquery-3.1.1.min.js"></script>
        <script type="text/javascript">
-		$.get("${ctx}/stat/loadCustomerAreaStatJosn.action",function(data){
+		$.get("<%=request.getContextPath()%>/stat/loadCustomerAreaStatJosn",function(data){
 			var dom = document.getElementById("container");
 			var myChart = echarts.init(dom);
 			var app = {};

@@ -21,6 +21,8 @@ public interface CheckDao {
     
     
     //查询
+
     List<Check> queryAllCheck(Check check);
+
     List<Check> queryAllCheck_one(CheckVo checkVo);
 }

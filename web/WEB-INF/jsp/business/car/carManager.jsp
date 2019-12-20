@@ -1,3 +1,9 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -109,7 +115,7 @@
 					<div class="layui-col-md3 layui-col-xs5">
 						<div class="layui-upload-list thumbBox mag0 magt3" id="carimgDiv">
 							<!-- 显示上传的图片 -->
-							<img class="layui-upload-img thumbImg" id="showCarImg">
+							<img class="layui-upload-img thumbImg"  onerror="this.src='<%=request.getContextPath()%>/resources/images/face1.jpg'"  id="showCarImg">
 							<!-- 保存当前显示图片的地址 -->
 							<input type="hidden" name="carimg" id="carimg">
 						</div>
@@ -162,8 +168,8 @@
 	
 	
 	<!-- 查看大图弹出的层 开始 -->
-	<div id="viewCarImageDiv" style="display: none;text-align: center;">
-		<img alt="车辆图片" width="550" height="350" id="view_carimg">
+	<div id="viewCarImageDiv" style="display: none; text-align: center;">
+		<img alt="车辆图片" width="550" id="view_carimg">
 	</div>
 	<!-- 查看大图弹出的层 结束 -->
 	
@@ -187,20 +193,21 @@
 			    ,page: true  //是否启用分页
 			    ,cols: [[   //列表数据
 			     {type: 'checkbox', fixed: 'left'}
-			      ,{field:'carnumber', title:'车牌号',align:'center',width:'120'}
-			      ,{field:'cartype', title:'车辆类型',align:'center',width:'100'}
-			      ,{field:'color', title:'车辆颜色',align:'center',width:'120'}
-			      ,{field:'price', title:'购买价格',align:'center',width:'150'}
-			      ,{field:'rentprice', title:'出租价格',align:'center',width:'120'}
-			      ,{field:'deposit', title:'出租押金',align:'center',width:'120'}
-			      ,{field:'isrenting', title:'出租状态',align:'center',width:'100',templet:function(d){
+			      ,{field:'carnumber', title:'车牌号',align:'center'}
+			      ,{field:'cartype', title:'车辆类型',align:'center'}
+			      ,{field:'color', title:'车辆颜色',align:'center'}
+			      ,{field:'price', title:'购买价格',align:'center'}
+			      ,{field:'rentprice', title:'出租价格',align:'center'}
+			      ,{field:'deposit', title:'出租押金',align:'center'}
+			      ,{field:'isrenting', title:'出租状态',align:'center',templet:function(d){
 			    	  return d.isrenting=='1'?'<font color=blue>已出租</font>':'<font color=red>未出租</font>';
 			      }}
-			      ,{field:'description', title:'车辆描述',align:'center',width:'180'}
-			      ,{field:'carimg', title:'缩略图',align:'center',width:'120',templet:function(d){
-			    	  return "<img width=40 height=30 src=${ctx}/file/downloadShowFile.action?path="+d.carimg+" />";
+			      ,{field:'description', title:'车辆描述',align:'center'}
+			      ,{field:'carimg', title:'缩略图',align:'center',templet:function(d){
+			          console.log("${ctx}/file/downloadShowFile?path="+d.carimg);
+			    	  return "<img width=40 height=30 src=${ctx}/file/downloadShowFile?path="+d.carimg+" />";
 			      }}
-			      ,{field:'createtime', title:'录入时间',align:'center',width:'180'}
+			      ,{field:'createtime', title:'录入时间',align:'center'}
 			      ,{fixed: 'right', title:'操作', toolbar: '#carBar', width:220,align:'center'}
 			    ]],
 			    done:function(data,curr,count){
@@ -269,7 +276,7 @@
 						//清空表单数据       
 						$("#dataFrm")[0].reset();
 						//设置默认图片
-						$("#showCarImg").attr("src","${ctx}/file/downloadShowFile.action?path=images/defaultcarimage.jpg")
+						$("#showCarImg").attr("src","${ctx}/file/downloadShowFile?path=images/defaultcarimage.jpg")
 						$("#carimg").val("images/defaultcarimage.jpg")
 						url="/SSM/car/addCar";
 						$("#carnumber").removeAttr("readonly");
@@ -337,6 +344,8 @@
 		        acceptMime:'images/*',
 		        field:"mf",
 		        done: function(res, index, upload){
+		            console.log(res);
+		            console.log(upload);
 		            $('#showCarImg').attr('src',"/SSM/file/downloadShowFile?path="+res.data.src);
 		            $('#carimg').val(res.data.src);
 		            $('#carimgDiv').css("background","#fff");
@@ -350,7 +359,7 @@
 					type:1,
 					title:"【"+data.carnumber+'】的车辆图片',
 					content:$("#viewCarImageDiv"),
-					area:['600px','400px'],
+					area:['600px','80%'],
 					success:function(index){
 						$("#view_carimg").attr("src","/SSM/file/downloadShowFile?path="+data.carimg);
 					}

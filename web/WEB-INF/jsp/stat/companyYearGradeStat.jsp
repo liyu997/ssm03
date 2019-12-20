@@ -13,8 +13,8 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="format-detection" content="telephone=no">
 <link rel="icon" href="favicon.ico">
-<link rel="stylesheet" href="${ctx }/resources/layui/css/layui.css" media="all" />
-<link rel="stylesheet" href="${ctx }/resources/css/public.css" media="all" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/layui/css/layui.css" media="all" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/public.css" media="all" />
 </head>
 <body style="height: 100%; margin: 0">
 <!-- 搜索条件开始 -->
@@ -36,9 +36,9 @@
 	</form>
 	<!-- 搜索条件结束 -->
        <div id="container" style="height: 70%"></div>
-       <script type="text/javascript" src="${ctx }/resources/echarts/js/echarts.min.js"></script>
-       <script type="text/javascript" src="${ctx }/resources/echarts/js/jquery-3.1.1.min.js"></script>
-       <script src="${ctx }/resources/layui/layui.js"></script>
+       <script type="text/javascript" src="<%=request.getContextPath()%>/resources/echarts/js/echarts.min.js"></script>
+       <script type="text/javascript" src="<%=request.getContextPath()%>/resources/echarts/js/jquery-3.1.1.min.js"></script>
+       <script src="<%=request.getContextPath()%>/resources/layui/layui.js"></script>
       
        <script type="text/javascript">
        layui.use([ 'jquery', 'layer', 'form', 'table','laydate'  ], function() {
@@ -62,7 +62,7 @@
 				if(year===""){
 					year=new Date().getFullYear();
 				}
-				$.get("${ctx}/stat/loadCompanyYearGradeStat.action",{year:year},function(data){
+				$.get("/SSM/stat/loadCompanyYearGradeStat",{year:year},function(data){
 					var dom = document.getElementById("container");
 					var myChart = echarts.init(dom);
 					var app = {};

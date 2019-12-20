@@ -127,7 +127,7 @@
   </update>
   
   <!-- 查询 -->
-   <select id="queryAllCheck"  resultMap="BaseResultMap">
+   <select id="queryAllCheck" parameterType="Check"  resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from bus_check

@@ -45,6 +45,9 @@ public class MenuController {
         List<Menu> list = null;
         menuVo.setAvailable(SysConstast.AVAILABLE_TRUE);
         //只查询可用的
+        if (user == null) {
+            return null;
+        }
         if (user.getType().equals(SysConstast.USER_TYPE_SUPER)) {
             list = this.menuService.queryAllMenu(menuVo);
         } else {

@@ -35,7 +35,8 @@ public class CheckController {
 	 */
 	@RequestMapping("checkRentExist")
 	public Rent checkRentExist(String rentid) {
-		Rent rent=rentService.queryRentByRentId(rentid);//null   返回对象
+		Rent rent=rentService.queryRentByRentId(rentid);
+		//null   返回对象
 		return rent;
 	}
 	

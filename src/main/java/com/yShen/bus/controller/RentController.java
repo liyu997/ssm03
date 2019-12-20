@@ -53,7 +53,7 @@ public class RentController {
 	@RequestMapping("initRentFrom")
 	public RentVo initRentFrom(RentVo rentVo) {
 		//生成出租单号
-//		rentVo.setRentid(RandomUtils.createRandomStringUseTime(SysConstast.CAR_ORDER_CZ));
+		rentVo.setRentid(RandomUtils.createRandomStringUseTime(SysConstast.CAR_ORDER_CZ));
 		//设置起租时间
 		rentVo.setBegindate(new Date());
 		

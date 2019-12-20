@@ -13,8 +13,8 @@
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="format-detection" content="telephone=no">
 	<link rel="icon" href="favicon.ico">
-	<link rel="stylesheet" href="${ctx }/resources/layui/css/layui.css" media="all" />
-	<link rel="stylesheet" href="${ctx }/resources/css/public.css" media="all" />
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/layui/css/layui.css" media="all" />
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/public.css" media="all" />
 </head>
 <body class="childrenBody">
 	<!-- 搜索条件开始 -->
@@ -106,7 +106,7 @@
 		</blockquote>
 
 		<!-- 出租单  车辆  客户的信息展开 -->
-		<div style="padding: 10px; background-color: #F2F2F2;">
+			<div style="padding: 10px; background-color: #F2F2F2;">
 			<div class="layui-row layui-col-space8">
 				<div class="layui-col-md4">
 					<div class="layui-card">
@@ -167,7 +167,7 @@
 		</div>
 	</div>
 
-	<script src="${ctx }/resources/layui/layui.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/layui/layui.js"></script>
 	<script type="text/javascript">
 		var tableIns;
 		layui.use([ 'jquery', 'layer', 'form', 'table', 'laydate' ],
@@ -181,7 +181,7 @@
 					//根据出租单号查询
 					$("#doSearch").click(function() {
 						var rentid = $("#search_rentid").val();
-						$.post("${ctx}/check/checkRentExist.action", {
+						$.post("/SSM/check/checkRentExist", {
 							rentid : rentid
 						}, function(obj) {
 							if (obj === "") {
@@ -202,7 +202,7 @@
 					
 					//加载表单数据和 卡片面板的数据
 					function initCheckFormData(rentid){
-						$.post("${ctx}/check/initCheckFormData.action",{rentid:rentid},function(obj){
+						$.post("/SSM/check/initCheckFormData",{rentid:rentid},function(obj){
 							//检查单
 							var check=obj.check;
 							form.val("checkFrm",check);
@@ -233,14 +233,14 @@
 							$("#car_rentprice").html("出租价格: "+car.rentprice);	
 							$("#car_deposit").html("出租押金: "+car.deposit);	
 							$("#car_description").html("车辆描述: "+car.description);	
-							$("#car_carimg").attr("src","${ctx}/file/downloadShowFile.action?path="+car.carimg);
+							$("#car_carimg").attr("src","/SSM/file/downloadShowFile?path="+car.carimg);
 						})
 					}
 					
 					//保存
 					form.on("submit(doSubmit)",function(){
 						var params=$("#checkFrm").serialize();
-						$.post("${ctx}/check/saveCheck.action",params,function(obj){
+						$.post("/SSM/check/saveCheck",params,function(obj){
 							layer.msg(obj.msg);
 							$("#content").hide();
 						})

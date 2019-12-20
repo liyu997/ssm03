@@ -24,8 +24,11 @@
     <context:component-scan base-package="com.yShen"/>
     <context:component-scan base-package="com.yShen.bus"/>
     <context:component-scan base-package="com.yShen.sys"/>
+    <context:component-scan base-package="com.yShen.stat"/>
     <context:component-scan base-package="com.yShen.bus.controller"/>
     <context:component-scan base-package="com.yShen.sys.controller"/>
+    <context:component-scan base-package="com.yShen.sys.task"/>
+
 
     <!-- 指定资源文件目录 -->
     <mvc:resources location="/resources/" mapping="/resources/**"/>
@@ -33,31 +36,28 @@
     <mvc:default-servlet-handler/>
 
     <!-- SpringMVC拦截器 -->
-    <!--<mvc:interceptors>-->
-    <!--<mvc:interceptor>-->
-    <!--<mvc:mapping path="/**"/>-->
-    <!--&lt;!&ndash; 排除资源文件,就是不拦截资源文件请求 &ndash;&gt;-->
-    <!--<mvc:exclude-mapping path="/resources/**"/>-->
-    <!--&lt;!&ndash; 也可以这样写,直接放行任何目录下的任何css和js 不进行拦截 &ndash;&gt;-->
-    <!--&lt;!&ndash; <mvc:exclude-mapping path="/**/*.css"/> &ndash;&gt;-->
-    <!--&lt;!&ndash; <mvc:exclude-mapping path="/**/*.js"/> &ndash;&gt;-->
-    <!--<bean class="com.yShen.bus.filter.AuthInterceptor"/>-->
-    <!--</mvc:interceptor>-->
-    <!--</mvc:interceptors>-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <!-- 排除资源文件,就是不拦截资源文件请求 -->
+            <mvc:exclude-mapping path="/resources/**"/>
+            <!-- 也可以这样写,直接放行任何目录下的任何css和js 不进行拦截 -->
+            <!-- <mvc:exclude-mapping path="/**/*.css"/> -->
+            <!-- <mvc:exclude-mapping path="/**/*.js"/> -->
+            <bean class="com.yShen.sys.filter.AuthInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 
     <!-- 引入jdbc配置文件 -->
     <context:property-placeholder location="classpath:jdbc.properties"/>
     <!-- 数据库连接池 -->
     <!--<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">-->
-        <!--<property name="driverClassName" value="${driver}"></property>-->
-        <!--<property name="url" value="${url}"></property>-->
-        <!--<property name="username" value="${user}"></property>-->
-        <!--<property name="password" value="${password}"></property>-->
+    <!--<property name="driverClassName" value="${driver}"></property>-->
+    <!--<property name="url" value="${url}"></property>-->
+    <!--<property name="username" value="${user}"></property>-->
+    <!--<property name="password" value="${password}"></property>-->
     <!--</bean>-->
     <!---->
-
-
-
 
 
     <!-- 使用druid的数据源 -->
@@ -79,29 +79,15 @@
     </bean>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <!-- SqlSessionFactory配置 -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"></property>
         <property name="configLocation" value="classpath:mybatis-config.xml"></property>
         <!--<property name="plugins">-->
-            <!--<array>-->
-                <!--<bean class="com.github.pagehelper.PageInterceptor">-->
-                <!--</bean>-->
-            <!--</array>-->
+        <!--<array>-->
+        <!--<bean class="com.github.pagehelper.PageInterceptor">-->
+        <!--</bean>-->
+        <!--</array>-->
         <!--</property>-->
         <!--pagehelper插件-->
     </bean>
@@ -117,12 +103,12 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
-    <!--<bean id="multipartResolver"-->
-          <!--class="org.springframework.web.multipart.commons.CommonsMultipartResolver">-->
-        <!--<property name="defaultEncoding" value="UTF-8"/>-->
-        <!--<property name="maxUploadSize" value="10000000"/>-->
-        <!--<property name="uploadTempDir" value="upload/temp"></property>-->
-    <!--</bean>-->
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="UTF-8"/>
+        <property name="maxUploadSize" value="10000000"/>
+        <property name="uploadTempDir" value="upload/temp"/>
+    </bean>
 
 
     <!-- 配置通知 -->
@@ -157,11 +143,11 @@
 
     <!-- 全局异常 -->
     <!--<bean-->
-            <!--class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">-->
-        <!--<property name="exceptionMappings">-->
-            <!--<props>-->
-                <!--<prop key="com.yShen.study.model.UserException">error</prop>-->
-            <!--</props>-->
-        <!--</property>-->
+    <!--class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">-->
+    <!--<property name="exceptionMappings">-->
+    <!--<props>-->
+    <!--<prop key="com.yShen.study.model.UserException">error</prop>-->
+    <!--</props>-->
+    <!--</property>-->
     <!--</bean>-->
 </beans>

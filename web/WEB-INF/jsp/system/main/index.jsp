@@ -12,7 +12,7 @@
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="format-detection" content="telephone=no">
-	<link rel="icon" href="favicon.ico">
+	<link rel="icon" href="<%=request.getContextPath()%>/resources/favicon.ico">
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/layui/css/layui.css" media="all" />
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/index.css" media="all" />
 </head>
@@ -33,7 +33,7 @@
 						<a href="javascript:;"><i class="seraph icon-lock"></i><cite>锁屏</cite></a>
 					</li>
 					<li class="layui-nav-item" id="userInfo">
-						<a href="javascript:;"><img src="<%=request.getContextPath()%>/resources/images/face.jpg" class="layui-nav-img userAvatar" width="35" height="35"><cite class="adminName">${user.realname }</cite></a>
+						<a href="javascript:;"><img src="<%=request.getContextPath()%>/resources/images/face1.jpg" class="layui-nav-img userAvatar" width="35" height="35"><cite class="adminName">${user.realname }</cite></a>
 						<dl class="layui-nav-child">
 							<dd><a href="javascript:;" data-url="<%=request.getContextPath()%>/resources/page/user/userInfo.html"><i class="seraph icon-ziliao" data-icon="icon-ziliao"></i><cite>个人资料</cite></a></dd>
 							<dd><a href="javascript:;" data-url="<%=request.getContextPath()%>/resources/page/user/changePwd.html"><i class="seraph icon-xiugai" data-icon="icon-xiugai"></i><cite>修改密码</cite></a></dd>
@@ -49,7 +49,7 @@
 		<!-- 左侧导航 -->
 		<div class="layui-side layui-bg-black">
 			<div class="user-photo">
-				<a class="img" title="我的头像" ><img src="<%=request.getContextPath()%>/resources/images/face.jpg" class="userAvatar"></a>
+				<a class="img" title="我的头像" ><img src="<%=request.getContextPath()%>/resources/images/face1.jpg" class="userAvatar"></a>
 				<%--<p>你好！<span class="userName">${user.realname }</span>, 欢迎登录</p>--%>
 			</div>
 			<!-- 搜索 -->

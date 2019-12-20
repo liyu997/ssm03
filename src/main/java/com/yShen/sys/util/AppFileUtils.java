@@ -16,11 +16,12 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 
 public class AppFileUtils {
-	
+
+
 	/**
 	 * 得到文件上传的路径
 	 */
-	public static String PATH="D:\\Download";
+	public static String PATH="D:/Download/";
 	static {
 		InputStream stream = AppFileUtils.class.getClassLoader().getResourceAsStream("file.properties");
 		Properties properties=new Properties();
@@ -31,8 +32,8 @@ public class AppFileUtils {
 			e.printStackTrace();
 		}
 	}
-	
-	
+
+
 
 	/**
 	 * 文件下载
@@ -71,6 +72,7 @@ public class AppFileUtils {
 		}else {
 			PrintWriter out;
 			try {
+				response.setCharacterEncoding("GBK");
 				out = response.getWriter();
 				out.write("文件不存在");
 				out.flush();
@@ -89,10 +91,46 @@ public class AppFileUtils {
 	 */
 	public static void deleteFileUsePath(String path) {
 		String realPath=PATH+path;
+		System.out.println(realPath);
 		//根据文件
 		File file=new File(realPath);
 		if(file.exists()) {
 			file.delete();
+		}
+	}
+
+
+	/**
+	 * 更改文件名
+	 * @param carimg
+	 */
+	public static String updateFileName(String carimg,String suffix) {
+		//找到文件
+		try {
+			File file=new File(PATH,carimg);
+			if(file.exists()) {
+				file.renameTo(new File(PATH,carimg.replace(suffix, "")));
+				return carimg.replace(suffix, "");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+
+	/**
+	 * 根据路径 删除图片
+	 * @param carimg
+	 */
+	public static void removeFileByPath(String carimg) {
+		try {
+			File file=new File(PATH,carimg);
+			if(file.exists()) {
+				file.delete();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 }

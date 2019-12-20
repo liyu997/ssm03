@@ -47,9 +47,11 @@ public class CheckServiceImpl implements CheckService {
 		Customer customer=this.customerMapper.selectByPrimaryKey(rent.getIdentity());
 		//查询车辆
 		Car car=this.carMapper.selectByPrimaryKey(rent.getCarnumber());
+
+
 		//组装Check
 		Check check=new Check();
-//		check.setCheckid(RandomUtils.createRandomStringUseTime(SysConstast.CAR_ORDER_JC));
+		check.setCheckid(RandomUtils.createRandomStringUseTime(SysConstast.CAR_ORDER_JC));
 		check.setRentid(rentid);
 		check.setCheckdate(new Date());
 		User user=(User) WebUtils.getHttpSession().getAttribute("user");
@@ -79,10 +81,15 @@ public class CheckServiceImpl implements CheckService {
 	}
 	@Override
 	public DataGridView queryAllCheck(CheckVo checkVo) {
-//		Page<Object> page=PageHelper.startPage(checkVo.getPage(), checkVo.getLimit());
-//		List<Check> data = this.checkMapper.queryAllCheck(checkVo);
-//		return new DataGridView(page.getTotal(), data);
-		return null;
+		double size =  checkMapper.queryAllCheck(checkVo).size();
+		int pagess = (int) Math.ceil(size/checkVo.getLimit());
+		if (pagess < checkVo.getPage()) {
+			checkVo.setPage(pagess);
+		}
+		List<Check> data = this.checkMapper.queryAllCheck_one(checkVo);
+		System.out.println(data);
+		DataGridView dataGridView = new DataGridView((long) size, data);
+		return  dataGridView;
 	}
 	@Override
 	public void updateCheck(CheckVo checkVo) {

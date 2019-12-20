@@ -19,45 +19,44 @@ public class RentDaoImpl extends SqlSessionDaoSupport implements RentDao {
         super.setSqlSessionFactory(sqlSessionFactory);
     }
 
-
     @Override
     public int deleteByPrimaryKey(String rentid) {
-        return 0;
+        return getSqlSession().delete("Rent.deleteByPrimaryKey",rentid);
     }
 
     @Override
     public int insert(Rent record) {
-        return 0;
+        return getSqlSession().insert("Rent.insert",record);
     }
 
     @Override
     public int insertSelective(Rent record) {
-        return 0;
+        return getSqlSession().insert("Rent.insertSelective",record);
     }
 
     @Override
     public Rent selectByPrimaryKey(String rentid) {
-        return null;
+        return getSqlSession().selectOne("Rent.selectByPrimaryKey",rentid);
     }
 
     @Override
     public int updateByPrimaryKeySelective(Rent record) {
-        return 0;
+        return getSqlSession().update("Rent.updateByPrimaryKeySelective",record);
     }
 
     @Override
     public int updateByPrimaryKey(Rent record) {
-        return 0;
+        return getSqlSession().update("Rent.updateByPrimaryKey",record);
     }
 
     @Override
     public List<Rent> queryAllRent(Rent rent) {
-        return null;
+        return getSqlSession().selectList("Rent.queryAllRent",rent);
     }
 
     @Override
     public List<Rent> queryAllRent_one(RentVo rentVo) {
         rentVo.setPage(rentVo.getLimit()*(rentVo.getPage()-1));
-        return null;
+        return getSqlSession().selectList("Rent.queryAllRent_one",rentVo);
     }
 }

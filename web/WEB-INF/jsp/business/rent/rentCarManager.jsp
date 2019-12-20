@@ -13,8 +13,8 @@
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="format-detection" content="telephone=no">
 	<link rel="icon" href="favicon.ico">
-	<link rel="stylesheet" href="${ctx }/resources/layui/css/layui.css" media="all" />
-	<link rel="stylesheet" href="${ctx }/resources/css/public.css" media="all" />
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/layui/css/layui.css" media="all" />
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/public.css" media="all" />
 </head>
 <body class="childrenBody">
 	<!-- 搜索条件开始 -->
@@ -119,7 +119,7 @@
 	</div>
 	<!-- 查看大图弹出的层 结束 -->
 	
-	<script src="${ctx }/resources/layui/layui.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/layui/layui.js"></script>
 	<script type="text/javascript">
 	    var tableIns;
 	    layui.use([ 'jquery', 'layer', 'form', 'table','laydate'  ], function() {
@@ -142,26 +142,26 @@
 				//渲染数据表格
 				 tableIns=table.render({
 					 elem: '#carTable'   //渲染的目标对象
-				    ,url:'${ctx}/car/loadAllCar.action?isrenting=0' //数据接口
+				    ,url:'/SSM/car/loadAllCar?isrenting=0' //数据接口
 				    ,title: '车辆据表'//数据导出来的标题
 				    ,height:'full-220'
 				    ,cellMinWidth:100 //设置列的最小默认宽度
 				    ,page: true  //是否启用分页
 				    ,cols: [[   //列表数据
-				      {field:'carnumber', title:'车牌号',align:'center',width:'120'}
-				      ,{field:'cartype', title:'出租类型',align:'center',width:'100'}
-				      ,{field:'color', title:'出租颜色',align:'center',width:'120'}
-				      ,{field:'price', title:'购买价格',align:'center',width:'150'}
-				      ,{field:'rentprice', title:'出租价格',align:'center',width:'120'}
-				      ,{field:'deposit', title:'出租押金',align:'center',width:'120'}
-				      ,{field:'isrenting', title:'出租状态',align:'center',width:'80',templet:function(d){
+				      {field:'carnumber', title:'车牌号',align:'center'}
+				      ,{field:'cartype', title:'出租类型',align:'center'}
+				      ,{field:'color', title:'出租颜色',align:'center'}
+				      ,{field:'price', title:'购买价格',align:'center'}
+				      ,{field:'rentprice', title:'出租价格',align:'center'}
+				      ,{field:'deposit', title:'出租押金',align:'center'}
+				      ,{field:'isrenting', title:'出租状态',align:'center',templet:function(d){
 				    	  return d.isrenting=='1'?'<font color=blue>已出租</font>':'<font color=red>未出租</font>';
 				      }}
-				      ,{field:'description', title:'出租描述',align:'center',width:'80'}
-				      ,{field:'carimg', title:'缩略图',align:'center',width:'180',templet:function(d){
-				    	  return "<img width=40 height=40 src=${ctx}/file/downloadShowFile.action?path="+d.carimg+" />";
+				      ,{field:'description', title:'出租描述',align:'center'}
+				      ,{field:'carimg', title:'缩略图',align:'center',templet:function(d){
+				    	  return "<img width=40 height=40 src=/SSM/file/downloadShowFile?path="+d.carimg+" />";
 				      }}
-				      ,{field:'createtime', title:'录入时间',align:'center',width:'180'}
+				      ,{field:'createtime', title:'录入时间',align:'center'}
 				      ,{fixed: 'right', title:'操作', toolbar: '#carBar', width:220,align:'center'}
 				    ]]
 				})
@@ -170,7 +170,7 @@
 			//模糊查询
 			$("#doSearch").click(function(){
 				var params=$("#searchFrm").serialize();
-				$.post("${ctx}/rent/checkCustomerExist.action",params,function(obj){
+				$.post("/SSM/rent/checkCustomerExist",params,function(obj){
 					if(obj.code>=0){
 						$("#content").show();
 						initCarData();
@@ -208,7 +208,7 @@
 						var identity=$("#identity").val();
 						var price=data.rentprice;
 						var carnumber=data.carnumber;						
-						$.get("${ctx}/rent/initRentFrom.action",{
+						$.get("/SSM/rent/initRentFrom.action",{
 							identity:identity,
 							price:price,
 							carnumber:carnumber
@@ -223,7 +223,7 @@
 			form.on("submit(doSubmit)",function(obj){
 				//序列化表单数据
 				var params=$("#dataFrm").serialize();
-				$.post("${ctx}/rent/saveRent.action",params,function(obj){
+				$.post("/SSM/rent/saveRent",params,function(obj){
 					layer.msg(obj.msg);
 					//关闭弹出层
 					layer.close(mainIndex)
@@ -239,7 +239,7 @@
 					content:$("#viewCarImageDiv"),
 					area:['600px','400px'],
 					success:function(index){
-						$("#view_carimg").attr("src","${ctx}/file/downloadShowFile.action?path="+data.carimg);
+						$("#view_carimg").attr("src","/SSM/file/downloadShowFile?path="+data.carimg);
 					}
 				});
 			}

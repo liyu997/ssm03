@@ -5,6 +5,7 @@ import java.util.List;
 import com.yShen.bus.dao.CarDao;
 import com.yShen.bus.dao.RentDao;
 import com.yShen.bus.model.Car;
+import com.yShen.bus.model.Customer;
 import com.yShen.bus.model.Rent;
 import com.yShen.bus.service.RentService;
 import com.yShen.bus.vo.RentVo;
@@ -38,10 +39,14 @@ public class RentServiceImpl implements RentService {
 
 	@Override
 	public DataGridView queryAllRent(RentVo rentVo) {
-//		Page<Object> page=PageHelper.startPage(rentVo.getPage(), rentVo.getLimit());
-//		List<Rent> data = this.rentMapper.queryAllRent(rentVo);
-//		return new DataGridView(page.getTotal(), data);
-		return null;
+		double size =  rentMapper.queryAllRent(rentVo).size();
+		int pagess = (int) Math.ceil(size/rentVo.getLimit());
+		if (pagess < rentVo.getPage()) {
+			rentVo.setPage(pagess);
+		}
+		List<Rent> data = this.rentMapper.queryAllRent_one(rentVo);
+		DataGridView dataGridView = new DataGridView((long) size, data);
+		return dataGridView;
 	}
 
 	@Override

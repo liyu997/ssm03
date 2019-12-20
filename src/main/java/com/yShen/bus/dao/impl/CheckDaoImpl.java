@@ -21,42 +21,43 @@ public class CheckDaoImpl extends SqlSessionDaoSupport implements CheckDao {
 
     @Override
     public int deleteByPrimaryKey(String checkid) {
-        return 0;
+        return getSqlSession().delete("Check.deleteByPrimaryKey",checkid);
     }
 
     @Override
     public int insert(Check record) {
-        return 0;
+        return getSqlSession().insert("Check.insert",record);
     }
 
     @Override
     public int insertSelective(Check record) {
-        return 0;
+        return getSqlSession().insert("Check.insertSelective",record);
     }
 
     @Override
     public Check selectByPrimaryKey(String checkid) {
-        return null;
+        return getSqlSession().selectOne("Check.selectByPrimaryKey",checkid);
     }
 
     @Override
     public int updateByPrimaryKeySelective(Check record) {
-        return 0;
+        return getSqlSession().update("Check.updateByPrimaryKeySelective",record);
     }
 
     @Override
     public int updateByPrimaryKey(Check record) {
-        return 0;
+        return getSqlSession().update("Check.updateByPrimaryKey",record);
     }
 
     @Override
     public List<Check> queryAllCheck(Check check) {
-        return null;
+        return getSqlSession().selectList("Check.queryAllCheck",check);
     }
 
     @Override
     public List<Check> queryAllCheck_one(CheckVo checkVo) {
         checkVo.setPage(checkVo.getLimit()*(checkVo.getPage()-1));
-        return null;
+        List<Check> list = getSqlSession().selectList("Check.queryAllCheck_one", checkVo);
+        return list;
     }
 }

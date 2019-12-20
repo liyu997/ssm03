@@ -31,12 +31,10 @@ public interface CustomerService {
 	public void updateCustomer(CustomerVo customerVo);
 	/**
 	 * 根据id删除客户
-	 * @param customerid
 	 */
 	public void deleteCustomer(String identity);
 	/**
 	 * 批量删除客户
-	 * @param customerVo
 	 */
 	public void deleteBatchCustomer(String[] identitys);
 	

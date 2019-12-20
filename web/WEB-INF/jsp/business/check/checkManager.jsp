@@ -13,8 +13,8 @@
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="format-detection" content="telephone=no">
 	<link rel="icon" href="favicon.ico">
-	<link rel="stylesheet" href="${ctx }/resources/layui/css/layui.css" media="all" />
-	<link rel="stylesheet" href="${ctx }/resources/css/public.css" media="all" />
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/layui/css/layui.css" media="all" />
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/public.css" media="all" />
 </head>
 <body class="childrenBody">
 	<!-- 搜索条件开始 -->
@@ -157,7 +157,7 @@
 	</div>
 	<!-- 添加和修改的弹出层结束 -->
 	
-	<script src="${ctx }/resources/layui/layui.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/layui/layui.js"></script>
 	<script type="text/javascript">
 	    var tableIns;
 	    layui.use([ 'jquery', 'layer', 'form', 'table','laydate'  ], function() {
@@ -182,7 +182,7 @@
 			//渲染数据表格
 			 tableIns=table.render({
 				 elem: '#checkTable'   //渲染的目标对象
-			    ,url:'${ctx}/check/loadAllCheck.action' //数据接口
+			    ,url:'/SSM/check/loadAllCheck' //数据接口
 			    ,title: '检查单数据表'//数据导出来的标题
 			    ,toolbar:"#checkToolBar"   //表格的工具条
 			    ,height:'full-220'
@@ -204,7 +204,7 @@
 			$("#doSearch").click(function(){
 				var params=$("#searchFrm").serialize();
 				tableIns.reload({
-					url:"${ctx}/check/loadAllCheck.action?"+params ,
+					url:"/SSM/check/loadAllCheck?"+params ,
 				    page:{
 				    	curr:1
 				    }
@@ -230,7 +230,7 @@
 					area:['800px','400px'],
 					success:function(index){
 						form.val("dataFrm",data);
-						url="${ctx}/check/updateCheck.action";
+						url="/SSM/check/updateCheck";
 					}
 				});
 			}

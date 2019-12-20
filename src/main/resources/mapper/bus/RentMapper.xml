@@ -165,7 +165,7 @@
 		#{rentid,jdbcType=VARCHAR}
 	</update>
 	<!-- 查询 -->
-	<select id="queryAllRent" resultMap="BaseResultMap">
+	<select id="queryAllRent" parameterType="Rent" resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
 		from bus_rent
@@ -191,7 +191,7 @@
 		</where>
 		order by createtime desc
 	</select>
-	<select id="queryAllRent" parameterType="RentVo" resultMap="BaseResultMap">
+	<select id="queryAllRent_one" parameterType="RentVo" resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
 		from bus_rent
