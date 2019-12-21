@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * 业务管理的路由控制器
- * @author LJH
  *
  */
 @Controller

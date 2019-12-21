@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * 汽车出租管理的控制器
- * @author LJH
  *
  */
 @RestController

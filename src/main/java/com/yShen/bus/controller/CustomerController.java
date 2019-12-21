@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * 客户管理控制器
- * 
- * @author LJH
  *
  */
 @RestController

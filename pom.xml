@@ -138,12 +138,20 @@
         <!--spirng aop end-->
 
         <!--spring aspects start-->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework</groupId>-->
+<!--            <artifactId>spring-aspects</artifactId>-->
+<!--            <version>5.0.8</version>-->
+<!--        </dependency>-->
+        <!--spring aspects end-->
+
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-aspects -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-aspects</artifactId>
-            <version>${org.springframework.version}</version>
+            <version>5.1.6.RELEASE</version>
         </dependency>
-        <!--spring aspects end-->
+
 
         <!--spring instrumentation start -->
         <dependency>

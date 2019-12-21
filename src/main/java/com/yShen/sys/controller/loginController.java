@@ -79,16 +79,13 @@ public class loginController {
 //        ImageIO.write(lineCaptcha.getImage(),"JPEG",outputStream);
 
 
-        // 自定义纯数字的验证码（随机4位数字，可重复）
+// 自定义纯数字的验证码（随机4位数字，可重复）
         RandomGenerator randomGenerator = new RandomGenerator("0123456789", 4);
         LineCaptcha lineCaptcha = CaptchaUtil.createLineCaptcha(116, 36);
         lineCaptcha.setGenerator(randomGenerator);
 // 重新生成code
         lineCaptcha.createCode();
-
         session.setAttribute("code", lineCaptcha.getCode());
-
-
         lineCaptcha.write(response.getOutputStream());
 
 
@@ -102,9 +99,8 @@ public class loginController {
             return "system/main/index";
     }
 
-
     /**
-     * 登陆方法
+     * 登陆成功重定向
      */
     @RequestMapping("/login")
     public String login(UserVo userVo, Model model) {
@@ -133,7 +129,6 @@ public class loginController {
 
 
     }
-
 
     @RequestMapping("/toDeskManager")
     public String toDeskManager() {

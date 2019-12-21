@@ -29,8 +29,6 @@ public interface IUserDao {
     List<User> queryAllUser_one(UserVo userVo);
     /**
      * 保存用户和角色的关系
-     * @param userid
-     * @param rid
      */
     void insertUserRole(@Param("uid")Integer userid, @Param("rid")Integer rid) ;
     /**

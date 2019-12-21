@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * 检查单管理的控制器
- * @author LJH
  *
  */
 @RestController

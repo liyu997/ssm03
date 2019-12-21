@@ -39,11 +39,7 @@
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
-            <!-- 排除资源文件,就是不拦截资源文件请求 -->
             <mvc:exclude-mapping path="/resources/**"/>
-            <!-- 也可以这样写,直接放行任何目录下的任何css和js 不进行拦截 -->
-            <!-- <mvc:exclude-mapping path="/**/*.css"/> -->
-            <!-- <mvc:exclude-mapping path="/**/*.js"/> -->
             <bean class="com.yShen.sys.filter.AuthInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>

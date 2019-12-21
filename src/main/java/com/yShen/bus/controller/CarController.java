@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * 车辆管理控制器
  * 
- * @author LJH
  *
  */
 @RestController
